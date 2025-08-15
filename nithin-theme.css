@@ -1,0 +1,129 @@
+@import url("https://carloshdrp.github.io/anilist-css/main.css"); /* main file */
+/* my-anilist-theme.css continues... */
+
+/* ============================ */
+/* Custom Color Palette Overrides */
+/* ============================ */
+:root {
+    /* Override existing Anilist-CSS variables (inspect their main.css for exact names) */
+    --color-background: #1a1a2e; /* Dark blue background */
+    --color-primary: #6a8cff;    /* Vibrant blue for accents/buttons */
+    --color-text: #e0e0f0;       /* Light text */
+    --color-text-secondary: #aaaaaa; /* Lighter grey for secondary text */
+    --color-border: rgba(255, 255, 255, 0.15); /* Soft border color */
+    --color-card-background: #2d2d5e; /* Slightly lighter blue for cards */
+    --color-link: #8cff8c;       /* Green for links */
+    --color-link-hover: #59ff59; /* Brighter green on link hover */
+
+    /* You can also define NEW variables for elements you want to style uniquely */
+    --my-custom-glow: #ffcc00; /* A gold color for a special effect */
+}
+
+/* ============================ */
+/* Global Styles & Element Overrides */
+/* ============================ */
+
+/* Example: Apply your custom background color to the body */
+body {
+    background-color: var(--color-background) !important; /* Use !important if needed to override existing inline/specificity */
+}
+
+/* Example: Style the main content area or specific cards */
+.site-content,
+.list-card,
+.media-card {
+    background-color: var(--color-card-background);
+    border-radius: 8px; /* Give all cards rounded corners */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4); /* Deeper shadow */
+    transition: all 0.3s ease-in-out; /* Smooth transition for hover effects */
+}
+
+.list-card:hover,
+.media-card:hover {
+    transform: translateY(-5px); /* Lift cards on hover */
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.6); /* More prominent shadow on hover */
+}
+
+/* Style buttons */
+.button,
+.button-primary {
+    background-color: var(--color-primary);
+    color: var(--color-text);
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+.button:hover,
+.button-primary:hover {
+    background-color: var(--color-blue-2); /* A slightly darker blue for hover */
+    transform: scale(1.02); /* Slight scale effect on hover */
+}
+
+/* More specific elements - you'll need to inspect Anilist's actual DOM structure */
+/* For instance, if there's a header */
+.header {
+    background-color: rgba(45, 45, 94, 0.8); /* Semi-transparent background */
+    backdrop-filter: blur(5px); /* Glassmorphism effect */
+    border-bottom: 1px solid var(--color-border);
+}
+
+.profile-header-avatar {
+    border: 3px solid var(--my-custom-glow); /* Apply your new glow variable */
+    box-shadow: 0 0 15px var(--my-custom-glow); /* Add a subtle glow effect */
+}
+
+/* my-anilist-theme.css continues... */
+
+/* ============================ */
+/* Custom Animations */
+/* ============================ */
+
+/* Animation for elements appearing on screen (e.g., lists, cards) */
+@keyframes slideInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* A subtle hover animation for interactive elements */
+@keyframes buttonPress {
+    0% { transform: scale(1); }
+    50% { transform: scale(0.98); }
+    100% { transform: scale(1); }
+}
+
+/* A continuous, soft pulsating glow */
+@keyframes pulsatingGlow {
+    0% { box-shadow: 0 0 10px var(--my-custom-glow), 0 0 20px rgba(255, 204, 0, 0.5); }
+    50% { box-shadow: 0 0 20px var(--my-custom-glow), 0 0 30px rgba(255, 204, 0, 0.8); }
+    100% { box-shadow: 0 0 10px var(--my-custom-glow), 0 0 20px rgba(255, 204, 0, 0.5); }
+}
+
+
+/* Applying the animations */
+
+/* Apply slide-in animation to main content sections or newly loaded lists */
+.site-content,
+.list-container { /* These class names are examples; inspect Anilist's HTML */
+    animation: slideInUp 0.6s ease-out forwards;
+}
+
+/* Apply button press animation on click (or specific interaction) */
+.button:active,
+.button-primary:active {
+    animation: buttonPress 0.2s ease;
+}
+
+/* Apply pulsating glow to your profile header avatar */
+.profile-header-avatar {
+    animation: pulsatingGlow 3s infinite alternate; /* 3 seconds, infinite loop, alternates direction */
+}
